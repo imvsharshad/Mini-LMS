@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Submit Homework</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Homework</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="homework">Select Homework:</label>
+                <select name="homework" id="homework" required>
+                    <option value="">Choose a homework</option>
+                    {% for homework in homeworks %}
+                        <option value="{{ homework.id }}">{{ homework.title }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="homework_file">Upload Homework File:</label>
+                <input type="file" name="homework_file" id="homework_file" required>
+            </div>
+            <button class="btn-primary" type="submit">Submit Homework</button>
+        </form>
+        <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
+

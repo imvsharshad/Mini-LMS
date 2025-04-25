@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Let's Create a To-Do List For You</h1>
+        {% if todos %}
+            <div class="todo-list">
+                {% for todo in todos %}
+                    <div class="todo-item">
+                        <div class="todo-content">
+                            <p>{{ todo.description }}</p>
+                            <p class="deadline">Deadline: {{ todo.deadline|date:"F d, Y H:i" }}</p>
+                        </div>
+                        <div class="todo-actions">
+                            <a href="{% url 'update_todo' todo.id %}" class="btn btn-update">Update</a>
+                            <button class="btn btn-finish" data-id="{{ todo.id }}">Finish</button>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>No tasks in your To-Do list. Add a task to get started!</p>
+        {% endif %}
+        <h2>Add a New Task</h2>
+        <form method="post" action="{% url 'add_todo' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-primary">Add Task</button>
+        </form>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+    <script>
+        document.querySelectorAll('.btn-finish').forEach(button => {
+            button.addEventListener('click', function() {
+                const todoId = this.dataset.id;
+                if (confirm('Have you completed this task?')) {
+                    fetch(`/finish-todo/${todoId}/`, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRFToken': '{{ csrf_token }}',
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            this.closest('.todo-item').remove();
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+

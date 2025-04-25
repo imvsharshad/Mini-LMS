@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Homeworks</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Your Homeworks</h1>
+        <div class="homeworks-container">
+            {% for homework in homeworks %}
+                <div class="homework">
+                    <h2>{{ homework.title }}</h2>
+                    <div class="homework-content">
+                        <p>{{ homework.description }}</p>
+                        {% if homework.image %}
+                            <img src="{{ homework.image.url }}" alt="Homework image">
+                        {% endif %}
+                    </div>
+                </div>
+            {% empty %}
+                <p>No homeworks assigned yet.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'home' %}" class="back-button">Back to Home</a>
+    </div>
+</body>
+</html>
+

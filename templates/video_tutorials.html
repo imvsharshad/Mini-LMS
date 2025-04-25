@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Tutorials</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Video Tutorials</h1>
+        <div class="video-grid">
+            {% for tutorial in tutorials %}
+                <div class="video-item">
+                    <a href="{{ tutorial.video_url }}" target="_blank">
+                        <img src="{{ tutorial.thumbnail_url }}" alt="{{ tutorial.title }}" class="video-thumbnail">
+                        <h3>{{ tutorial.title }}</h3>
+                    </a>
+                    <p>{{ tutorial.description }}</p>
+                </div>
+            {% empty %}
+                <p>No video tutorials available at the moment.</p>
+            {% endfor %}
+        </div>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Back to Home</a>
+    </div>
+</body>
+</html>
+
