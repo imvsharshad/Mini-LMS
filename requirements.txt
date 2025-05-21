@@ -70,6 +70,7 @@ packaging==24.2
 pandas==2.2.3
 Pillow==8.3.2
 protobuf==4.25.6
+psycopg2-binary==2.9.10
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 Pygments==2.19.1
