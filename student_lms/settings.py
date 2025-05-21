@@ -27,7 +27,8 @@ SECRET_KEY = 'django-insecure-1=o38k^m@=cwm#7-!7)6bh6)k$8#1t$oi++nwc1(cc&8*$9y+7
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'mini-lms-z59t.onrender.com'
+    '*',
+    'https://mini-lms-z59t.onrender.com/',
 ]
 CSRF_TRUSTED_ORIGINS = [
     'https://mini-lms-z59t.onrender.com/'
