@@ -27,11 +27,7 @@ SECRET_KEY = 'django-insecure-1=o38k^m@=cwm#7-!7)6bh6)k$8#1t$oi++nwc1(cc&8*$9y+7
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*',
-    'https://mini-lms-z59t.onrender.com/',
-]
-CSRF_TRUSTED_ORIGINS = [
-    'https://mini-lms-z59t.onrender.com/'
+    '*'
 ]
 
 MEDIA_URL = '/media/'
@@ -86,13 +82,12 @@ WSGI_APPLICATION = 'student_lms.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-import dj_database_url
+
 DATABASES = {
-    'default': dj_database_url.config(
-        default='postgres://...',  # Optional fallback
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 
@@ -132,7 +127,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
