@@ -122,3 +122,10 @@ def contact_us(request):
     else:
         form = ContactForm()
     return render(request, 'contact_us.html', {'form': form})
+
+
+from django.contrib.auth import logout
+
+def logout_view(request):
+    logout(request)  # Logs out the current user
+    return redirect('login')  # Redirects to your custom login view

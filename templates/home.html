@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LMS Home</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <h1>The Learning Management System</h1>
-        <p class="quote">"Learn at your own pace"</p>
-        <nav>
-            <ul id="home">
-                <li><a href="{% url 'view_homeworks' %}">View Homeworks</a></li>
-                <li><a href="{% url 'submit_homework' %}">Submit Homework</a></li>
-                <li><a href="{% url 'todo_list' %}">Add To-Do List</a></li>
-                <li><a href="{% url 'video_tutorials' %}">Video Tutorials</a></li>
-                <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
-            </ul>
-        </nav>
-        <a href="{% url 'logout' %}">Logout</a>
-    </div>
-</body>
-</html>
+      <h1>The Learning Management System</h1>
+      <p class="quote">"Learn at your own pace"</p>
+      <nav>
+        <ul id="home">
+          <li><a href="{% url 'view_homeworks' %}">View Homeworks</a></li>
+          <li><a href="{% url 'submit_homework' %}">Submit Homework</a></li>
+          <li><a href="{% url 'todo_list' %}">Add To-Do List</a></li>
+          <li><a href="{% url 'video_tutorials' %}">Video Tutorials</a></li>
+          <li><a href="{% url 'contact_us' %}">Contact Us</a></li>
+        </ul>
+      </nav>
 
+      <a href="{% url 'logout' %}"> Logout</a>
+    </div>
+  </body>
+</html>

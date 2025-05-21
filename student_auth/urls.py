@@ -14,6 +14,5 @@ urlpatterns = [
     path('finish-todo/<int:todo_id>/', views.finish_todo, name='finish_todo'),
     path('video-tutorials/', views.video_tutorials, name='video_tutorials'),
     path('contact-us/', views.contact_us, name='contact_us'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
 ]
-
